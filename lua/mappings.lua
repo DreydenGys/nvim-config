@@ -10,6 +10,7 @@ wk.add({
     { "<leader>f",        group = "file" },
     { "<leader>fe",       vim.cmd.Ex,                desc = "open explorer" },
     { "<leader>ff",       "<cmd>Files<cr>",          desc = "Find file" },
+    { "<leader>fg",       "<cmd>Rg<cr>",             desc = "Find file using RipGrep" },
 
     -- Buffer  related keymaps
     { "<leader>b",        group = "buffer" },
@@ -28,6 +29,7 @@ wk.add({
     { "<leader>ww",       "<C-w>w",                  desc = "Switch window" },
     { "<leader>wv",       "<cmd>vsplit<cr>",         desc = "Split window vertically" },
     { "<leader>ws",       "<cmd>split<cr>",          desc = "Split window" },
+    { "<leader>wt",       "<cmd>terminal<cr>",       desc = "Open terminal in current window" },
     { "<C-h>",            "<C-w>h",                  desc = "Switch window left" },
     { "<C-l>",            "<C-w>l",                  desc = "Switch window right" },
     { "<C-j>",            "<C-w>j",                  desc = "Switch window down" },
@@ -41,6 +43,7 @@ wk.add({
     { "<leader><leader>", "<cmd>Commands<cr>",       desc = "Search for commands" },
 
     {
+        -- not working ?
         { "<leader>c", "gcc", desc = "Comment current line",       mode = "n" },
         { "<leader>C", "gbc", desc = "Block comment current line", mode = "n" },
         { "<leader>c", "gc",  desc = "Comment selection",          mode = "v" },
