@@ -62,7 +62,12 @@ vim.diagnostic.config({ virtual_text = true })
 lspconfig.rust_analyzer.setup {
     capabilities = lsp_capabilities,
     settings = {
-        ['rust-analyzer'] = {},
+        ['rust-analyzer'] = {
+            cargo = { all_features = true },
+            checkOnSave = {
+                command = "clippy",
+            },
+        },
     }
 }
 
