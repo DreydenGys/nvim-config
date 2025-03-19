@@ -41,14 +41,6 @@ wk.add({
     { "s",                require("hop").hint_words, desc = "Jump to a word" },
     { "<leader>e",        "<cmd>NvimTreeFocus<cr>",  desc = "Focus explorer" },
     { "<leader><leader>", "<cmd>Commands<cr>",       desc = "Search for commands" },
-
-    {
-        -- not working ?
-        { "<leader>c", "gcc", desc = "Comment current line",       mode = "n" },
-        { "<leader>C", "gbc", desc = "Block comment current line", mode = "n" },
-        { "<leader>c", "gc",  desc = "Comment selection",          mode = "v" },
-        { "<leader>C", "gb",  desc = "Block comment selection",    mode = "v" },
-    }
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {

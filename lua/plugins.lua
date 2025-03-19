@@ -50,7 +50,22 @@ require("ibl").setup()
 require("nvim-autopairs").setup()
 
 -- comment
-require('Comment').setup()
+require('Comment').setup({
+    ---LHS of toggle mappings in NORMAL mode
+    toggler = {
+        ---Line-comment toggle keymap
+        line = '<space>c',
+        ---Block-comment toggle keymap
+        block = '<space>C',
+    },
+    ---LHS of operator-pending mappings in NORMAL and VISUAL mode
+    opleader = {
+        ---Line-comment keymap
+        line = '<space>c',
+        ---Block-comment keymap
+        block = '<space>C',
+    },
+})
 
 -- lspconfig
 local lspconfig = require("lspconfig")
