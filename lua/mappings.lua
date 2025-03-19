@@ -4,6 +4,38 @@ local wk = require("which-key")
 
 vim.g.mapleader = " "
 
+local expand_macro = function()
+    vim.lsp.buf_request_all(0, "rust-analyzer/expandMacro",
+        vim.lsp.util.make_position_params(),
+        function(result)
+            vim.cmd("vsplit")
+
+            -- Create an empty scratch buffer
+            local buf = vim.api.nvim_create_buf(false, true)
+
+            -- Set the buffer to the current window
+            vim.api.nvim_win_set_buf(0, buf)
+
+            if result then
+                -- Set the buffer as rust
+                vim.api.nvim_set_option_value("filetype", "rust", { buf = 0 })
+                for _, res in pairs(result) do
+                    if res and res.result and res.result.expansion then
+                        vim.api.nvim_buf_set_lines(buf, -1, -1, false, vim.split(res.result.expansion, "\n"))
+                    else
+                        vim.api.nvim_buf_set_lines(buf, -1, -1, false, {
+                            "No expansion available."
+                        })
+                    end
+                end
+            else
+                vim.api.nvim_buf_set_lines(buf, -1, -1, false, {
+                    "Error: No result returned."
+                })
+            end
+        end)
+end
+
 wk.add({
     mode = { "n", "v" },
     -- File related keymaps
@@ -48,17 +80,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function()
         wk.add({
             mode = { "n", "v" },
-            { "K",    "<cmd>lua vim.lsp.buf.hover()<cr>",          desc = "Display hover information" },
-            { "gd",   "<cmd>lua vim.lsp.buf.definition()<cr>",     desc = "Jump to definition" },
-            { "gD",   "<cmd>lua vim.lsp.buf.declaration()<cr>",    desc = "Jump to declaration" },
-            { "gi",   "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "List all implementations" },
-            { "gr",   "<cmd>lua vim.lsp.buf.references()<cr>",     desc = "List all references" },
-            { "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>",         desc = "Rename all occurences" },
-            { "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>",    desc = "Select a code action available" },
+            { "K",         "<cmd>lua vim.lsp.buf.hover()<cr>",          desc = "Display hover information" },
+            { "gd",        "<cmd>lua vim.lsp.buf.definition()<cr>",     desc = "Jump to definition" },
+            { "gD",        "<cmd>lua vim.lsp.buf.declaration()<cr>",    desc = "Jump to declaration" },
+            { "gi",        "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "List all implementations" },
+            { "gr",        "<cmd>lua vim.lsp.buf.references()<cr>",     desc = "List all references" },
+            { "<F2>",      "<cmd>lua vim.lsp.buf.rename()<cr>",         desc = "Rename all occurences" },
+            { "<F4>",      "<cmd>lua vim.lsp.buf.code_action()<cr>",    desc = "Select a code action available" },
 
-            { "gl",   "<cmd>lua vim.diagnostic.open_float()<cr>",  desc = "Show diagnostic" },
-            { "[d",   "<cmd>lua vim.diagnostic.goto_prev()<cr>",   desc = "Go to the previous diagnostic" },
-            { "]d",   "<cmd>lua vim.diagnostic.goto_next()<cr>",   desc = "Go to the next diagnostic" },
+            { "gl",        "<cmd>lua vim.diagnostic.open_float()<cr>",  desc = "Show diagnostic" },
+            { "[d",        "<cmd>lua vim.diagnostic.goto_prev()<cr>",   desc = "Go to the previous diagnostic" },
+            { "]d",        "<cmd>lua vim.diagnostic.goto_next()<cr>",   desc = "Go to the next diagnostic" },
+
+            { "<leader>M", expand_macro,                                desc = "Expand macro" },
         })
 
         vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
