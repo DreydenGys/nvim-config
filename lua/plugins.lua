@@ -21,7 +21,9 @@ require("hop").setup()
 
 -- neogit
 local neogit = require("neogit")
-neogit.setup()
+neogit.setup({
+    graph_style = "unicode",
+})
 
 -- nvim-tree
 require("nvim-tree").setup()
