@@ -89,6 +89,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { "<F4>",      "<cmd>lua vim.lsp.buf.code_action()<cr>",    desc = "Select a code action available" },
 
             { "gl",        "<cmd>lua vim.diagnostic.open_float()<cr>",  desc = "Show diagnostic" },
+            { "gL",        "<cmd>lua vim.diagnostic.setloclist()<cr>",  desc = "Show diagnostic location list" },
             { "[d",        "<cmd>lua vim.diagnostic.goto_prev()<cr>",   desc = "Go to the previous diagnostic" },
             { "]d",        "<cmd>lua vim.diagnostic.goto_next()<cr>",   desc = "Go to the next diagnostic" },
 
