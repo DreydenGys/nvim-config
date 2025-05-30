@@ -40,39 +40,39 @@ wk.add({
     mode = { "n", "v" },
     -- File related keymaps
     { "<leader>f",        group = "file" },
-    { "<leader>fe",       vim.cmd.Ex,                desc = "open explorer" },
-    { "<leader>ff",       "<cmd>Files<cr>",          desc = "Find file" },
-    { "<leader>fg",       "<cmd>Rg<cr>",             desc = "Find file using RipGrep" },
+    { "<leader>fe",       vim.cmd.Ex,                  desc = "open explorer" },
+    { "<leader>ff",       "<cmd>FzfLua files<cr>",     desc = "Find file" },
+    { "<leader>fg",       "<cmd>FzfLua live_grep<cr>", desc = "Find file using RipGrep" },
 
     -- Buffer  related keymaps
     { "<leader>b",        group = "buffer" },
-    { "<leader>bb",       "<cmd>Buffers<cr>",        desc = "List open buffers" },
-    { "<leader>bs",       "<cmd>w<cr>",              desc = "Save buffer" },
-    { "<leader>bk",       "<cmd>q<cr>",              desc = "Close buffer" },
+    { "<leader>bb",       "<cmd>FzfLua buffers<cr>",   desc = "List open buffers" },
+    { "<leader>bs",       "<cmd>w<cr>",                desc = "Save buffer" },
+    { "<leader>bk",       "<cmd>q<cr>",                desc = "Close buffer" },
 
     -- Vim fugitive
     { "<leader>g",        group = "git" },
-    { "<leader>gs",       "<cmd>Neogit<cr>",         desc = "Git status" },
-    { "<leader>gc",       "<cmd>Neogit commit<cr>",  desc = "Git commit" },
+    { "<leader>gs",       "<cmd>Neogit<cr>",           desc = "Git status" },
+    { "<leader>gc",       "<cmd>Neogit commit<cr>",    desc = "Git commit" },
 
     -- Window related command
     { "<leader>w",        group = "window" },
-    { "<leader>we",       "<cmd>NvimTreeToggle<cr>", desc = "Toggle explorer" },
-    { "<leader>ww",       "<C-w>w",                  desc = "Switch window" },
-    { "<leader>wv",       "<cmd>vsplit<cr>",         desc = "Split window vertically" },
-    { "<leader>ws",       "<cmd>split<cr>",          desc = "Split window" },
-    { "<leader>wt",       "<cmd>terminal<cr>",       desc = "Open terminal in current window" },
-    { "<C-h>",            "<C-w>h",                  desc = "Switch window left" },
-    { "<C-l>",            "<C-w>l",                  desc = "Switch window right" },
-    { "<C-j>",            "<C-w>j",                  desc = "Switch window down" },
-    { "<C-k>",            "<C-w>k",                  desc = "Switch window up" },
+    { "<leader>we",       "<cmd>NvimTreeToggle<cr>",   desc = "Toggle explorer" },
+    { "<leader>ww",       "<C-w>w",                    desc = "Switch window" },
+    { "<leader>wv",       "<cmd>vsplit<cr>",           desc = "Split window vertically" },
+    { "<leader>ws",       "<cmd>split<cr>",            desc = "Split window" },
+    { "<leader>wt",       "<cmd>terminal<cr>",         desc = "Open terminal in current window" },
+    { "<C-h>",            "<C-w>h",                    desc = "Switch window left" },
+    { "<C-l>",            "<C-w>l",                    desc = "Switch window right" },
+    { "<C-j>",            "<C-w>j",                    desc = "Switch window down" },
+    { "<C-k>",            "<C-w>k",                    desc = "Switch window up" },
 
     -- Others
     { "<leader>q",        group = "quit" },
-    { "<leader>qq",       "<cmd>qa<cr>",             desc = "Quit all" },
-    { "s",                require("hop").hint_words, desc = "Jump to a word" },
-    { "<leader>e",        "<cmd>NvimTreeFocus<cr>",  desc = "Focus explorer" },
-    { "<leader><leader>", "<cmd>Commands<cr>",       desc = "Search for commands" },
+    { "<leader>qq",       "<cmd>qa<cr>",               desc = "Quit all" },
+    { "s",                require("hop").hint_words,   desc = "Jump to a word" },
+    { "<leader>e",        "<cmd>NvimTreeFocus<cr>",    desc = "Focus explorer" },
+    { "<leader><leader>", "<cmd>Commands<cr>",         desc = "Search for commands" },
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -84,12 +84,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { "gd",        "<cmd>lua vim.lsp.buf.definition()<cr>",     desc = "Jump to definition" },
             { "gD",        "<cmd>lua vim.lsp.buf.declaration()<cr>",    desc = "Jump to declaration" },
             { "gi",        "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "List all implementations" },
-            { "gr",        "<cmd>lua vim.lsp.buf.references()<cr>",     desc = "List all references" },
+            { "gr",        "<cmd>FzfLua lsp_references<cr>",            desc = "List all references" },
             { "<F2>",      "<cmd>lua vim.lsp.buf.rename()<cr>",         desc = "Rename all occurences" },
-            { "<F4>",      "<cmd>lua vim.lsp.buf.code_action()<cr>",    desc = "Select a code action available" },
+            { "<F4>",      "<cmd>FzfLua lsp_code_actions<cr>",          desc = "Select a code action available" },
 
             { "gl",        "<cmd>lua vim.diagnostic.open_float()<cr>",  desc = "Show diagnostic" },
-            { "gL",        "<cmd>lua vim.diagnostic.setloclist()<cr>",  desc = "Show diagnostic location list" },
+            { "gL",        "<cmd>FzfLua diagnostics_workspace<cr>",     desc = "Show diagnostic location list" },
             { "[d",        "<cmd>lua vim.diagnostic.goto_prev()<cr>",   desc = "Go to the previous diagnostic" },
             { "]d",        "<cmd>lua vim.diagnostic.goto_next()<cr>",   desc = "Go to the next diagnostic" },
 

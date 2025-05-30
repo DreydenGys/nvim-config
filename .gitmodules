@@ -37,9 +37,6 @@
 [submodule "pack/misc/start/fzf"]
 	path = pack/misc/start/fzf
 	url = https://github.com/junegunn/fzf
-[submodule "pack/misc/start/fzf.vim"]
-	path = pack/misc/start/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
 [submodule "pack/misc/start/hop.nvim"]
 	path = pack/misc/start/hop.nvim
 	url = https://github.com/smoka7/hop.nvim
@@ -52,3 +49,6 @@
 [submodule "pack/appearance/start/lualine.nvim"]
 	path = pack/appearance/start/lualine.nvim
 	url = https://github.com/nvim-lualine/lualine.nvim.git
+[submodule "pack/misc/start/fzf-lua"]
+	path = pack/misc/start/fzf-lua
+	url = https://github.com/ibhagwan/fzf-lua
