@@ -16,6 +16,10 @@ wk.setup({ preset = "helix" })
 local lualine = require("lualine")
 lualine.setup()
 
+-- fzflua profile
+local fzflua = require("fzf-lua")
+fzflua.setup({ "ivy" })
+
 -- hop
 require("hop").setup()
 
