@@ -12,6 +12,10 @@ vim.cmd.colorscheme("tokyonight")
 local wk = require("which-key")
 wk.setup({ preset = "helix" })
 
+-- lualine
+local lualine = require("lualine")
+lualine.setup()
+
 -- hop
 require("hop").setup()
 
